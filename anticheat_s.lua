@@ -1,29 +1,32 @@
-function checkHealth()
-    local vHealth = getElementData(source, "blood") or 0
+function checkStats()
+    for k, player in ipairs(getElementType("player")) do
+        checkHealth(player)
+        verifyFood(player)
+        verifyThirst(player)
+    end
+end
+setTimer(verifyStat, 5000, 0)
+
+function checkHealth(player)
+    local vHealth = getElementData(player, "blood") or 0
     if vHealth >= 12001 then
-        setElementData(source, "blood", 12000)
-        kickPlayer(source, "You use cheat")
+        setElementData(player, "blood", 12000)
+        kickPlayer(player, "You use cheat")
     end
 end
-addEvent("goCheckHealth", true)
-addEventHandler("goCheckHealth", getRootElement(), checkHealth)
 
-function checkFood()
-    local vFood = getElementData(source, "food") or 0
+function checkFood(player)
+    local vFood = getElementData(player, "food") or 0
     if vFood >= 101 then
-        setElementData(source, "food", 30)
-        kickPlayer(source, "You use cheat")
+        setElementData(player, "food", 30)
+        kickPlayer(player, "You use cheat")
     end
 end
-addEvent("goCheckFood", true)
-addEventHandler("goCheckFood", getRootElement(), checkFood)
 
-function checkThirst()
-    local vFood = getElementData(source, "thirst") or 0
+function checkThirst(player)
+    local vFood = getElementData(player, "thirst") or 0
     if vFood >= 101 then
-        setElementData(source, "thirst", 30)
-        kickPlayer(source, "You use cheat")
+        setElementData(player, "thirst", 30)
+        kickPlayer(player, "You use cheat")
     end
 end
-addEvent("goCheckThirst", true)
-addEventHandler("goCheckThirst", getRootElement(), checkThirst)
