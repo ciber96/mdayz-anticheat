@@ -5,7 +5,7 @@ function checkStats()
         verifyThirst(player)
     end
 end
-setTimer(verifyStat, 5000, 0)
+setTimer(checkStats, 5000, 0)
 
 function checkHealth(player)
     local vHealth = getElementData(player, "blood") or 0
