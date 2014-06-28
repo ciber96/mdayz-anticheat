@@ -1,5 +1,5 @@
 function checkStats()
-    for k, player in ipairs(getElementType("player")) do
+    for i, player in ipairs(getElementType("player")) do
         checkHealth(player)
         verifyFood(player)
         verifyThirst(player)
