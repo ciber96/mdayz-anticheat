@@ -33,7 +33,7 @@ end
 
 function checkSlots(thePlayer)
     local vSlots = getElementData(thePlayer, "MAX_Slots") or 0
-    if vSlots >= 50 then
+    if vSlots >= 80 then
         setElementData(thePlayer, "MAX_Slots", 0)
         kickPlayer(thePlayer, "[AC] : Slots Hack")
     end
