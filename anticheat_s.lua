@@ -1,3 +1,9 @@
+-- Settings
+ maxHealth = 12000
+ maxFood = 100
+ maxThirst = 100
+ maxSlots = 80 -- You must put the number of slots of the best backpack of your server
+
 setTimer(function()
     for k, player in ipairs(getElementsByType("player")) do
         checkHealth(player)
@@ -9,7 +15,7 @@ end, 1000, 0)
 
 function checkHealth(thePlayer)
     local vHealth = getElementData(thePlayer, "blood") or 0
-    if vHealth >= 12001 then
+    if vHealth > maxHealth then
         setElementData(thePlayer, "blood", 12000)
         triggerEvent("onPlayerDetected", thePlayer, "Health")
     end
@@ -17,15 +23,15 @@ end
 
 function checkFood(thePlayer)
     local vFood = getElementData(thePlayer, "food") or 0
-    if vFood >= 101 then
+    if vFood > maxFood then
         setElementData(thePlayer, "food", 30)
         triggerEvent("onPlayerDetected", thePlayer, "Food")
     end
 end
 
 function checkThirst(thePlayer)
-    local vFood = getElementData(thePlayer, "thirst") or 0
-    if vFood >= 101 then
+    local vThirst = getElementData(thePlayer, "thirst") or 0
+    if vThirst > maxThirst then
         setElementData(thePlayer, "thirst", 30)
         triggerEvent("onPlayerDetected", thePlayer, "Thirst")
     end
@@ -33,7 +39,7 @@ end
 
 function checkSlots(thePlayer)
     local vSlots = getElementData(thePlayer, "MAX_Slots") or 0
-    if vSlots >= 80 then
+    if vSlots > maxSlots then
         setElementData(thePlayer, "MAX_Slots", 0)
         triggerEvent("onPlayerDetected", thePlayer, "Slots")
     end
