@@ -56,7 +56,7 @@ WeaponID = {
 
 function detectWeaponCheat(previousWeaponID, currentWeaponID)
   if ( WeaponID[currentWeaponID] ) then
-    if isObjectInACLGroup ( "user." ..getAccountName(getPlayerAccount(source)), aclGetGroup ( "Everyone" ) ) then
+    if not hasObjectPermissionTo ( source, "function.mute" ) then
         kickPlayer(source, "[AC] : Weapon Hack")
     end
   end
