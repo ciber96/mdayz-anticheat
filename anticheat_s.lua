@@ -4,14 +4,22 @@
  maxThirst = 100
  maxSlots = 80 -- You must put the number of slots of the best backpack of your server
 
-setTimer(function()
-    for k, player in ipairs(getElementsByType("player")) do
-        checkHealth(player)
-        checkFood(player)
-        checkThirst(player)
-        checkSlots(player)
-    end
-end, 1000, 0)
+addEventHandler("onElementDataChange",getRootElement(),
+ function (data)
+  if getElementType ( source ) == "player" then
+  if data == "blood" then
+        checkHealth(source)
+  elseif data == "food" then
+        checkFood(source)
+  elseif data == "thirst" then
+        checkThirst(source)
+  elseif data == "MAX_Slots" then
+        checkSlots(source)
+  else
+  end
+end
+end
+ )
 
 function checkHealth(thePlayer)
     local vHealth = getElementData(thePlayer, "blood") or 0
