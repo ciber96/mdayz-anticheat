@@ -5,59 +5,52 @@
  maxSlots = 80 -- You must put the number of slots of the best backpack of your server
 
 addEventHandler("onElementDataChange",getRootElement(),
- function (data)
-  if getElementType ( source ) == "player" then
-  if data == "blood" then
+ function(data)
+  if getElementType(source) == "player" then
+    if data == "blood" then
         checkHealth(source)
-  elseif data == "food" then
+    elseif data == "food" then
         checkFood(source)
-  elseif data == "thirst" then
+    elseif data == "thirst" then
         checkThirst(source)
-  elseif data == "MAX_Slots" then
+    elseif data == "MAX_Slots" then
         checkSlots(source)
-  else
+    else
+    end
   end
-end
-end
- )
+end)
 
-function checkHealth(thePlayer)
-    local vHealth = getElementData(thePlayer, "blood") or 0
+function checkHealth(source)
+    local vHealth = getElementData(source, "blood") or 0
     if vHealth > maxHealth then
-        setElementData(thePlayer, "blood", 12000)
-        triggerEvent("onPlayerDetected", thePlayer, "Health")
+        setElementData(source, "blood", 12000)
+        kickPlayer(source, "[AC] : Health Hack")
     end
 end
 
-function checkFood(thePlayer)
-    local vFood = getElementData(thePlayer, "food") or 0
+function checkFood(source)
+    local vFood = getElementData(source, "food") or 0
     if vFood > maxFood then
-        setElementData(thePlayer, "food", 30)
-        triggerEvent("onPlayerDetected", thePlayer, "Food")
+        setElementData(source, "food", 30)
+        kickPlayer(source, "[AC] : Food Hack")
     end
 end
 
-function checkThirst(thePlayer)
-    local vThirst = getElementData(thePlayer, "thirst") or 0
+function checkThirst(source)
+    local vThirst = getElementData(source, "thirst") or 0
     if vThirst > maxThirst then
-        setElementData(thePlayer, "thirst", 30)
-        triggerEvent("onPlayerDetected", thePlayer, "Thirst")
+        setElementData(source, "thirst", 30)
+        kickPlayer(source, "[AC] : Thirst Hack")
     end
 end
 
-function checkSlots(thePlayer)
-    local vSlots = getElementData(thePlayer, "MAX_Slots") or 0
+function checkSlots(source)
+    local vSlots = getElementData(source, "MAX_Slots") or 0
     if vSlots > maxSlots then
-        setElementData(thePlayer, "MAX_Slots", 0)
-        triggerEvent("onPlayerDetected", thePlayer, "Slots")
+        setElementData(source, "MAX_Slots", 0)
+        kickPlayer(source, "[AC] : Slots Hack")
     end
 end
-
-function onPlayerDetected(source, name)
-    kickPlayer(source, "[AC] : "..name.." Hack")
-end
-addEvent("onPlayerDetected", true)
-addEventHandler("onPlayerDetected", root, onPlayerDetected)
 
 function detectVehicleCheat(vehicle, seat, jacked)
   if ( getElementModel(vehicle) == 432 or getElementModel(vehicle) == 425 or getElementModel(vehicle) == 501 or getElementModel(vehicle) == 564 or getElementModel(Vehicle) == 594 or getElementModel(vehicle) == 601 or getElementModel(vehicle) == 447 or getElementModel(vehicle) == 520 ) then
